@@ -22,6 +22,12 @@ public class Funds {
         return funds.get(currency.ordinal());
     }
 
+    @Override
+    public String toString() {
+        return "Funds{" + funds +
+                '}';
+    }
+
     public static class Builder {
 
         private TIntDoubleHashMap funds = new TIntDoubleHashMap();
