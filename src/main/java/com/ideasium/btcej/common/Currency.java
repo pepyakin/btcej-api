@@ -59,7 +59,7 @@ public enum Currency {
 		}
 		
 		for (Currency currency : Currency.values()) {
-			if (currency.getName().equals(name)) {
+			if (currency.getName().equalsIgnoreCase(name)) {
 				return currency;
 			}
 		}

@@ -9,4 +9,5 @@ package com.ideasium.btcej;
  */
 public class UserInfo {
 
+
 }

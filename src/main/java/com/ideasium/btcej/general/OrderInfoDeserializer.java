@@ -15,12 +15,12 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
  * @author pepyakin
  *
  */
-public class OrderInfoDeserializer extends JsonDeserializer<OrderInfo> {
+class OrderInfoDeserializer extends JsonDeserializer<OrderInfo> {
 
-	/* (non-Javadoc)
-	 * @see com.fasterxml.jackson.databind.JsonDeserializer#deserialize(com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.databind.DeserializationContext)
-	 */
-	@Override
+    /**
+     * {@inheritDoc}
+     */
+    @Override
 	public OrderInfo deserialize(JsonParser jp, DeserializationContext context)
 			throws IOException {
 		
