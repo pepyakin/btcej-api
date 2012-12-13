@@ -14,7 +14,7 @@ interface RequestHandler {
      * Выполнить запрос к общему API.
      * @param pair
      * @param method
-     * @return
+     * @return Возвращает ответ на запрос в виде строки.
      * @throws IOException
      */
     String getResponse(Pair pair, String method) throws IOException;
