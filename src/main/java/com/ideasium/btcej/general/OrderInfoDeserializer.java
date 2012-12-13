@@ -22,7 +22,7 @@ public class OrderInfoDeserializer extends JsonDeserializer<OrderInfo> {
 	 */
 	@Override
 	public OrderInfo deserialize(JsonParser jp, DeserializationContext context)
-			throws IOException, JsonProcessingException {
+			throws IOException {
 		
 		JsonToken token;
 		

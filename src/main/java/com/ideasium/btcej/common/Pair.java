@@ -13,11 +13,13 @@ import static com.ideasium.btcej.common.Currency.*;
  */
 public enum Pair {
     /**
-     * Пара {@link Currency#BTC Bitcoin} к {@link Currency#USD}.
+     * Пара {@link Currency#BTC Bitcoin} к {@link Currency#USD USD}.
      */
 	BTC_USD(BTC, USD),
 
-
+    /**
+     * Пара {@link Currency#LTC Litecoin} к {@link Currency#BTC Bitcoin}.
+     */
 	LTC_BTC(LTC, BTC), 
 	LTC_USD(LTC, USD), 
 	NMC_BTC(NMC, BTC), 
@@ -46,6 +48,7 @@ public enum Pair {
 	public String getName() {
 		StringBuilder sb = new StringBuilder();
 
+        // Идентификаторы пары должны быть в нижнем регистре.
 		sb.append(source.getName().toLowerCase());
 		sb.append('_');
 		sb.append(destination.getName().toLowerCase());
