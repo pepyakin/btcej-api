@@ -8,7 +8,7 @@ import java.io.IOException;
  *
  * @author pepyakin
  */
-interface RequestHandler {
+public interface RequestHandler {
 
     /**
      * Выполнить запрос к общему API.

@@ -84,6 +84,10 @@ public class GeneralBtce {
         return infos;
     }
 
+    public double getFee(Pair pair) throws BtceException {
+        throw new RuntimeException();
+    }
+
     private JsonNode queryResultRoot(Pair pair, String methodName) throws BtceException {
         try {
             String respone = requestHandler.getResponse(pair, methodName);
