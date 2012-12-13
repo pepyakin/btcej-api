@@ -8,18 +8,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Rights {
 
+    @JsonProperty("info")
     private boolean info;
+
+    @JsonProperty("trade")
     private boolean trade;
 
-    @JsonCreator
-    public Rights(
-            @JsonProperty("info")
-            boolean info,
+    @JsonProperty("withdraw")
+    private boolean withdraw;
 
-            @JsonProperty("trade")
-            boolean trade) {
-        this.info = info;
-        this.trade = trade;
+    private Rights() {
     }
 
     /**
@@ -41,6 +39,7 @@ public class Rights {
         return "Rights{" +
                 "info=" + info +
                 ", trade=" + trade +
+                ", withdraw=" + withdraw +
                 '}';
     }
 }
