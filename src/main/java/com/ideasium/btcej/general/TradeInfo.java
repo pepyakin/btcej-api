@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ideasium.btcej.common.Currency;
 
 /**
- * @author knott
+ * @author pepyakin
  * 
  */
 public class TradeInfo {

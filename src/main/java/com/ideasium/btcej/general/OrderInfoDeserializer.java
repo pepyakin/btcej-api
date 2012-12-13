@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 /**
- * @author knott
+ * @author pepyakin
  *
  */
 public class OrderInfoDeserializer extends JsonDeserializer<OrderInfo> {

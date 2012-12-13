@@ -15,7 +15,7 @@ import com.ideasium.btcej.common.BtceException;
 /**
  * Класс необходимый для авторизации клиента.
  * 
- * @author knott
+ * @author pepyakin
  */
 public class BtceAuth {
 

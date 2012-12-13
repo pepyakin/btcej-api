@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
 
- * @author knott
+ * @author pepyakin
  */
 public class Depth {
 

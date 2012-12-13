@@ -8,7 +8,7 @@ package com.ideasium.btcej.common;
  * BTC.
  *
  * @see Pair
- * @author knott
+ * @author pepyakin
  */
 public enum Currency {
     /**

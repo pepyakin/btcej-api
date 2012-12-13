@@ -6,7 +6,7 @@ package com.ideasium.btcej.general;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
- * @author knott
+ * @author pepyakin
  * 
  */
 @JsonDeserialize(using = OrderInfoDeserializer.class)

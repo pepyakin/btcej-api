@@ -4,13 +4,13 @@
 package com.ideasium.btcej;
 
 /**
- * @author knott
+ * @author pepyakin
  */
 public class Btce {
 
 	private long nonce;
 	private BtceAuth auth;
-	
+
 	/**
 	 * @param auth Информация необходимая для авторизации клиента. Не может быть <code>null</code>.
 	 */

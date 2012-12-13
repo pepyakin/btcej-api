@@ -6,7 +6,7 @@ package com.ideasium.btcej.general;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @author knott
+ * @author pepyakin
  * 
  */
 public class Ticker {

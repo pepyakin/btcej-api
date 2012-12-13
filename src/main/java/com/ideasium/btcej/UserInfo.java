@@ -4,7 +4,7 @@
 package com.ideasium.btcej;
 
 /**
- * @author knott
+ * @author pepyakin
  *
  */
 public class UserInfo {

@@ -9,7 +9,7 @@ import static com.ideasium.btcej.common.Currency.*;
  * Перечисление, определяющее основные валютные пары, поддерживаемые
  * биржой BTC-E.
  *
- * @author knott
+ * @author pepyakin
  */
 public enum Pair {
     /**

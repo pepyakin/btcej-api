@@ -4,7 +4,7 @@
 package com.ideasium.btcej.common;
 
 /**
- * @author knott
+ * @author pepyakin
  *
  */
 public enum SortOrder {

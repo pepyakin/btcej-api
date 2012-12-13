@@ -19,12 +19,17 @@ import java.util.List;
 /**
  * Методы доступа к публичным данным биржи BTC-E.
  * 
- * @author knott
+ * @author pepyakin
  */
 public class GeneralBtce {
 
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
+    private final RequestHandler requestHandler;
 
+    public GeneralBtce(ObjectMapper mapper, RequestHandler requestHandler) {
+        this.mapper = mapper;
+        this.requestHandler = requestHandler;
+    }
 
     /**
      *
@@ -32,8 +37,7 @@ public class GeneralBtce {
      * @return
      */
     public Ticker getTicker(Pair pair) throws BtceException {
-        String requestUrl = getRequestUrl(pair, "ticker");
-        JsonNode response = queryResultRoot(requestUrl);
+        JsonNode response = queryResultRoot(pair, "ticker");
 
         try {
             return mapper.treeToValue(response.get("ticker"), Ticker.class);
@@ -47,8 +51,7 @@ public class GeneralBtce {
      * @return Глубина биржи. Список текущих ордеров на покупку и продажу.
      */
     public Depth getDepth(Pair pair) throws BtceException {
-        String requestUrl = getRequestUrl(pair, "depth");
-        JsonNode response = queryResultRoot(requestUrl);
+        JsonNode response = queryResultRoot(pair, "depth");
 
         try {
             return mapper.treeToValue(response, Depth.class);
@@ -62,8 +65,7 @@ public class GeneralBtce {
      * @return Список последних транзакций.
      */
     public List<TradeInfo> getTrades(Pair pair) throws BtceException {
-        String requestUrl = getRequestUrl(pair, "trades");
-        JsonNode response = queryResultRoot(requestUrl);
+        JsonNode response = queryResultRoot(pair, "trades");
 
         List<TradeInfo> infos = new ArrayList<TradeInfo>();
 
@@ -82,31 +84,12 @@ public class GeneralBtce {
         return infos;
     }
 
-    private static String getRequestUrl(Pair pair, String methodName) {
-        return String.format("https://btc-e.com/api/2/%s/%s", pair.getName(), methodName);
-    }
-
-    private JsonNode queryResultRoot(String urlSpec) throws BtceException {
+    private JsonNode queryResultRoot(Pair pair, String methodName) throws BtceException {
         try {
-            String respone = query(urlSpec);
+            String respone = requestHandler.getResponse(pair, methodName);
             return mapper.readTree(respone);
         } catch (IOException e) {
             throw new BtceException(e);
         }
-    }
-
-    private static String query(String urlSpec) throws IOException {
-        URL url = new URL(urlSpec);
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                url.openStream()));
-
-        StringBuilder responseContent = new StringBuilder();
-
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-            responseContent.append(inputLine);
-        }
-
-        return responseContent.toString();
     }
 }
