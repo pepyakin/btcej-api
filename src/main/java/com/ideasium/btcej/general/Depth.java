@@ -14,15 +14,23 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Depth {
 
-	private final List<OrderInfo> asks;
-	private final List<OrderInfo> bids;
+    @JsonProperty("asks")
+	private List<OrderInfo> asks;
+
+    @JsonProperty("bids")
+	private List<OrderInfo> bids;
+
 
 	public Depth(
-            @JsonProperty("asks") @NotNull List<OrderInfo> asks,
-            @JsonProperty("bids") @NotNull List<OrderInfo> bids) {
+             @NotNull List<OrderInfo> asks,
+             @NotNull List<OrderInfo> bids) {
 		this.asks = asks;
 		this.bids = bids;
 	}
+
+    public Depth() {
+
+    }
 
     @NotNull
 	public List<OrderInfo> getAsks() {
