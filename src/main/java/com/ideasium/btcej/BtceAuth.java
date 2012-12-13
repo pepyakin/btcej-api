@@ -22,7 +22,7 @@ public class BtceAuth {
 	private static final Charset DEFAULT_CHARSET = Charset.defaultCharset();
 
 	private String key;
-	private Mac hmacSha256;
+	private Mac hmacSha512;
 
 	public BtceAuth(String key, String secretKey) throws BtceException {
 		if (key == null) {
@@ -34,13 +34,13 @@ public class BtceAuth {
 		}
 
 		try {
-			hmacSha256 = Mac.getInstance("HmacSHA256");
+			hmacSha512 = Mac.getInstance("HmacSHA512");
 
 			SecretKeySpec secretKeySpec = new SecretKeySpec(
-					secretKey.getBytes(DEFAULT_CHARSET), "HmacSHA256");
-			hmacSha256.init(secretKeySpec);
+					secretKey.getBytes(DEFAULT_CHARSET), "HmacSHA512");
+			hmacSha512.init(secretKeySpec);
 		} catch (NoSuchAlgorithmException e) {
-			throw new BtceException("There are no HMAC SHA256 algorithm", e);
+			throw new BtceException("There are no HMAC SHA512 algorithm", e);
 		} catch (InvalidKeyException e) {
 			throw new BtceException("Provided key is invalid", e);
 		}
@@ -52,7 +52,7 @@ public class BtceAuth {
 		return key;
 	}
 
-	public Mac getHmacSha256() {
-		return hmacSha256;
+	public Mac getHmacSha512() {
+		return hmacSha512;
 	}
 }
