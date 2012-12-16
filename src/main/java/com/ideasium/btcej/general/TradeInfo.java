@@ -89,4 +89,20 @@ public class TradeInfo {
 	public void setType(TradeType type) {
 		this.type = type;
 	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "TradeInfo{" +
+                "amount=" + amount +
+                ", price=" + price +
+                ", date=" + date +
+                ", item=" + item +
+                ", priceCurrency=" + priceCurrency +
+                ", tid=" + tid +
+                ", type=" + type +
+                '}';
+    }
 }

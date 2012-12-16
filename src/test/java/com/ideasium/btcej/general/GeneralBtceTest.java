@@ -24,7 +24,8 @@ public class GeneralBtceTest {
     private static final double DELTA = 0.000001;
 
 
-    @Mock RequestHandler handler;
+    @Mock
+    ResponseFetcher handler;
     ObjectMapper mapper;
 
     GeneralBtce btce;
@@ -40,7 +41,7 @@ public class GeneralBtceTest {
         final String JSON_RESPONSE = "{ \"ticker\":{\"high\":13.509,\"low\":13.309,\"avg\":13.409,\"vol\":22219.88385," +
                 "\"vol_cur\":1655.07919,\"last\":13.367,\"buy\":13.4,\"sell\":13.367,\"server_time\":1355412389}}";
 
-        when(handler.getResponse(PAIR, "ticker")).thenReturn(JSON_RESPONSE);
+        when(handler.fetchResponse(PAIR, "ticker")).thenReturn(JSON_RESPONSE);
 
         Ticker ticker = btce.getTicker(PAIR);
 
@@ -60,7 +61,7 @@ public class GeneralBtceTest {
         final String JSON_RESPONSE = "{\"asks\":[[426,0.46726227],[427,0.35]], " +
                 "\"bids\" : [[420.5,0.9277161],[420.2,7.48484346]]}";
 
-        when(handler.getResponse(PAIR, "depth")).thenReturn(JSON_RESPONSE);
+        when(handler.fetchResponse(PAIR, "depth")).thenReturn(JSON_RESPONSE);
 
         Depth depth = btce.getDepth(PAIR);
 
@@ -92,7 +93,7 @@ public class GeneralBtceTest {
         final String JSON_RESPONSE = "[{\"date\":1355412657,\"price\":420.5,\"amount\":0.132284,\"tid\":403436," +
                 "\"price_currency\":\"RUR\",\"item\":\"BTC\",\"trade_type\":\"ask\"}]";
 
-        when(handler.getResponse(PAIR, "trades")).thenReturn(JSON_RESPONSE);
+        when(handler.fetchResponse(PAIR, "trades")).thenReturn(JSON_RESPONSE);
 
         List<TradeInfo> trades = btce.getTrades(PAIR);
 

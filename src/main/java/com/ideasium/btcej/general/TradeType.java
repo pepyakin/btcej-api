@@ -14,14 +14,14 @@ public enum TradeType {
 	BID("bid");
 	
 	
-	private String value;
+	private final String id;
 	
-	private TradeType(String value) {
-		this.value = value;
+	private TradeType(String id) {
+		this.id = id;
 	}
 
 	@JsonValue
-	public String getValue() {
-		return value;
+	public String getTradeTypeId() {
+		return id;
 	}
 }

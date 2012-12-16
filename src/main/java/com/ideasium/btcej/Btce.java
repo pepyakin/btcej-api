@@ -48,9 +48,7 @@ public class Btce {
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < signedBytes.length; i++) {
-            byte value = signedBytes[i];
-
+        for (byte value : signedBytes) {
             sb.append(ALPHABET[((value & 0xF0) >> 4)]);
             sb.append(ALPHABET[value & 0x0F]);
         }

@@ -8,7 +8,7 @@ import java.io.IOException;
  *
  * @author pepyakin
  */
-public interface RequestHandler {
+public interface ResponseFetcher {
 
     /**
      * Выполнить запрос к общему API.
@@ -17,5 +17,5 @@ public interface RequestHandler {
      * @return Возвращает ответ на запрос в виде строки.
      * @throws IOException
      */
-    String getResponse(Pair pair, String method) throws IOException;
+    String fetchResponse(Pair pair, String method) throws IOException;
 }

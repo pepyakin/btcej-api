@@ -110,4 +110,21 @@ public class Ticker {
 		this.serverTime = serverTime;
 	}
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Ticker{" +
+                "average=" + average +
+                ", buy=" + buy +
+                ", high=" + high +
+                ", last=" + last +
+                ", low=" + low +
+                ", sell=" + sell +
+                ", volume=" + volume +
+                ", volumeCurrent=" + volumeCurrent +
+                ", serverTime=" + serverTime +
+                '}';
+    }
 }

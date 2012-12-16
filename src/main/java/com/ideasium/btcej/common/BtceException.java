@@ -7,7 +7,7 @@ package com.ideasium.btcej.common;
  * @author pepyakin
  *
  */
-public class BtceException extends Exception {
+public class BtceException extends RuntimeException {
 
 	/**
 	 * 

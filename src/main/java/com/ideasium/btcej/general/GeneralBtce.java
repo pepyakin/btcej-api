@@ -9,10 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ideasium.btcej.common.BtceException;
 import com.ideasium.btcej.common.Pair;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +21,11 @@ import java.util.List;
 public class GeneralBtce {
 
     private final ObjectMapper mapper;
-    private final RequestHandler requestHandler;
+    private final ResponseFetcher responseFetcher;
 
-    public GeneralBtce(ObjectMapper mapper, RequestHandler requestHandler) {
+    public GeneralBtce(ObjectMapper mapper, ResponseFetcher responseFetcher) {
         this.mapper = mapper;
-        this.requestHandler = requestHandler;
+        this.responseFetcher = responseFetcher;
     }
 
     /**
@@ -90,7 +87,7 @@ public class GeneralBtce {
 
     private JsonNode queryResultRoot(Pair pair, String methodName) throws BtceException {
         try {
-            String respone = requestHandler.getResponse(pair, methodName);
+            String respone = responseFetcher.fetchResponse(pair, methodName);
             return mapper.readTree(respone);
         } catch (IOException e) {
             throw new BtceException(e);

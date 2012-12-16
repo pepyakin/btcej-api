@@ -11,10 +11,15 @@ import java.net.URL;
 /**
  * @author pepyakin
  */
-class HttpV2RequestHandler implements RequestHandler {
+class HttpV2ResponseFetcher implements ResponseFetcher {
 
     @NonNls
     public static final String API_BASE_URL = "https://btc-e.com/api/2/";
+
+    public String fetchResponse(Pair pair, String method) throws IOException {
+        String requestUrl = getRequestUrl(pair, method);
+        return query(requestUrl);
+    }
 
     public String getRequestUrl(Pair pair, String methodName) {
         final String API_URL_FORMAT = API_BASE_URL + "%s/%s";
@@ -35,10 +40,5 @@ class HttpV2RequestHandler implements RequestHandler {
         }
 
         return responseContent.toString();
-    }
-
-    public String getResponse(Pair pair, String method) throws IOException {
-        String requestUrl = getRequestUrl(pair, method);
-        return query(requestUrl);
     }
 }

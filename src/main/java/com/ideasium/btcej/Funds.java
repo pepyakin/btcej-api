@@ -13,7 +13,7 @@ import java.util.HashMap;
 @JsonDeserialize(using = FundsDeserializer.class)
 public class Funds {
 
-    private TIntDoubleHashMap funds;
+    private final TIntDoubleHashMap funds;
 
     private Funds(TIntDoubleHashMap funds) {
         this.funds = funds;
@@ -55,7 +55,7 @@ public class Funds {
 
     public static class Builder {
 
-        private TIntDoubleHashMap funds = new TIntDoubleHashMap();
+        private final TIntDoubleHashMap funds = new TIntDoubleHashMap();
 
         public Builder setFunds(Currency currency, double amount) {
             funds.put(currency.ordinal(), amount);

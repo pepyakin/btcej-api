@@ -11,7 +11,7 @@ public enum SortOrder {
 	ASCENDING("ASC"),
 	DESCENDING("DESC");
 	
-	private String name;
+	private final String name;
 	
 	public String getName() {
 		return name;

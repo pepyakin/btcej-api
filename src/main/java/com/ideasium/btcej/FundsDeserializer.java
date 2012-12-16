@@ -1,10 +1,10 @@
 package com.ideasium.btcej;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.ideasium.btcej.common.Currency;
 
 import java.io.IOException;
@@ -14,31 +14,36 @@ import java.io.IOException;
  */
 class FundsDeserializer extends JsonDeserializer<Funds> {
 
+    private JsonParser jsonParser;
+    private DeserializationContext context;
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public Funds deserialize(JsonParser jp, DeserializationContext context) throws IOException {
-        JsonToken token;
+    public Funds deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
 
-        token = jp.getCurrentToken();
-
-        if (token != JsonToken.START_OBJECT) {
-            throw context.wrongTokenException(jp, JsonToken.START_OBJECT, null);
-        }
+        this.jsonParser = jsonParser;
+        this.context = context;
 
         Funds.Builder builder = new Funds.Builder();
 
-        while (jp.nextToken() != JsonToken.END_OBJECT) {
-            String currencyName = jp.getText();
+        /*
+         * Разбирает JSON объект вида:
+         * {
+         *   <currency> : <amount>,
+         *   <currency> : <amount>,
+         *   ...
+         * }
+         */
+
+        parseStartObject();
+
+        while (this.jsonParser.nextToken() != JsonToken.END_OBJECT) {
+            String currencyName = parseCurrencyName();
             Currency currency = Currency.findByName(currencyName);
 
-            token = jp.nextToken();
-            if (token != JsonToken.VALUE_NUMBER_FLOAT && token != JsonToken.VALUE_NUMBER_INT) {
-                throw context.wrongTokenException(jp, JsonToken.VALUE_NUMBER_FLOAT, null);
-            }
-
-            double amount = jp.getValueAsDouble();
+            double amount = parseAmountValue();
 
             if (currency != null) {
                 builder.setFunds(currency, amount);
@@ -46,5 +51,32 @@ class FundsDeserializer extends JsonDeserializer<Funds> {
         }
 
         return builder.build();
+    }
+
+    private void parseStartObject() throws JsonMappingException {
+        JsonToken token;
+        token = jsonParser.getCurrentToken();
+
+        if (token != JsonToken.START_OBJECT) {
+            throw context.wrongTokenException(jsonParser, JsonToken.START_OBJECT, null);
+        }
+    }
+
+    private String parseCurrencyName() throws IOException {
+        if (jsonParser.getCurrentToken() != JsonToken.FIELD_NAME) {
+            throw context.wrongTokenException(jsonParser, JsonToken.FIELD_NAME, null);
+        }
+
+        return jsonParser.getText();
+    }
+
+    private double parseAmountValue() throws IOException {
+        JsonToken token;
+        token = jsonParser.nextToken();
+        if (!token.isNumeric()) {
+            throw context.wrongTokenException(jsonParser, JsonToken.VALUE_NUMBER_FLOAT, null);
+        }
+
+        return jsonParser.getValueAsDouble();
     }
 }
