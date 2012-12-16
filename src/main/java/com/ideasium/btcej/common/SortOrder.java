@@ -12,12 +12,12 @@ public enum SortOrder {
 	DESCENDING("DESC");
 	
 	private final String name;
-	
-	public String getName() {
-		return name;
-	}
 
 	private SortOrder(String name) {
 		this.name = name;
 	}
+
+    public String getName() {
+        return name;
+    }
 }

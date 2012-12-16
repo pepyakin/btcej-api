@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ideasium.btcej;
 
@@ -29,18 +29,31 @@ public class UserInfo {
         return funds;
     }
 
+    /**
+     * @return Объект {@link Rights}, с помощью которого можно
+     * узнать о доступных операциях данному аккаунту.
+     */
     public Rights getRights() {
         return rights;
     }
 
+    /**
+     * @return Количество транзакций выполненых данным {@link BtceAuth аккаунтом}.
+     */
     public int getTransactionCount() {
         return transactionCount;
     }
 
+    /**
+     * @return Количество открытых ордеров на данный момент.
+     */
     public int getOpenOrdersCount() {
         return openOrdersCount;
     }
 
+    /**
+     * @return
+     */
     public long getServerTime() {
         return serverTime;
     }

@@ -3,6 +3,8 @@
  */
 package com.ideasium.btcej.common;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Перечисление, определяющее основные валюты используемые на бирже
  * BTC.
@@ -53,7 +55,8 @@ public enum Currency {
      * @param name Идентификатор валюты.
      * @return Валюту по ее идентификатору.
      */
-	public static Currency findByName(String name) {
+	@Nullable
+    public static Currency findByName(@Nullable String name) {
 		if (name == null) {
 			throw new IllegalArgumentException();
 		}

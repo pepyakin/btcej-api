@@ -14,6 +14,7 @@ import com.ideasium.btcej.common.BtceException;
 
 /**
  * Класс необходимый для авторизации клиента.
+ * Хранит ключ API и секретный ключ для подписания сообщения.
  * 
  * @author pepyakin
  */
@@ -24,7 +25,7 @@ public class BtceAuth {
 	private String key;
 	private Mac hmacSha512;
 
-	public BtceAuth(String key, String secretKey) throws BtceException {
+	public BtceAuth(String key, String secretKey) {
 		if (key == null) {
 			throw new IllegalArgumentException("key");
 		}

@@ -5,8 +5,6 @@ import com.ideasium.btcej.common.Currency;
 import gnu.trove.map.hash.TIntDoubleHashMap;
 import gnu.trove.procedure.TIntDoubleProcedure;
 
-import java.util.HashMap;
-
 /**
  * @author pepyakin
  */
@@ -28,26 +26,7 @@ public class Funds {
         final StringBuilder sb = new StringBuilder();
         sb.append("Funds {");
 
-        funds.forEachEntry(new TIntDoubleProcedure() {
-
-            private boolean first = true;
-
-            public boolean execute(int a, double b) {
-                if (first) {
-                    first = false;
-                } else {
-                    sb.append(", ");
-                }
-
-                Currency currency = Currency.values()[a];
-
-                sb.append(currency.getName());
-                sb.append('=');
-                sb.append(b);
-
-                return true;
-            }
-        });
+        funds.forEachEntry(new CurrencyValueVisitor(sb));
 
         sb.append('}');
         return sb.toString();
@@ -68,6 +47,33 @@ public class Funds {
          */
         public Funds build() {
             return new Funds(funds);
+        }
+    }
+
+    private static class CurrencyValueVisitor implements TIntDoubleProcedure {
+
+        private final StringBuilder sb;
+        private boolean firstIteration;
+
+        public CurrencyValueVisitor(StringBuilder sb) {
+            this.sb = sb;
+            firstIteration = true;
+        }
+
+        public boolean execute(int currencyId, double amount) {
+            if (firstIteration) {
+                firstIteration = false;
+            } else {
+                sb.append(", ");
+            }
+
+            Currency currency = Currency.values()[currencyId];
+
+            sb.append(currency.getName());
+            sb.append('=');
+            sb.append(amount);
+
+            return true;
         }
     }
 }

@@ -33,7 +33,7 @@ public class GeneralBtce {
      * @param pair {@link Pair Валютная пара} относительно которой необходимо сделать запрос.
      * @return
      */
-    public Ticker getTicker(Pair pair) throws BtceException {
+    public Ticker getTicker(Pair pair) {
         JsonNode response = queryResultRoot(pair, "ticker");
 
         try {
@@ -47,7 +47,7 @@ public class GeneralBtce {
      * @param pair {@link Pair Валютная пара} относительно которой необходимо сделать запрос.
      * @return Глубина биржи. Список текущих ордеров на покупку и продажу.
      */
-    public Depth getDepth(Pair pair) throws BtceException {
+    public Depth getDepth(Pair pair) {
         JsonNode response = queryResultRoot(pair, "depth");
 
         try {
@@ -61,7 +61,7 @@ public class GeneralBtce {
      * @param pair {@link Pair Валютная пара} относительно которой необходимо сделать запрос.
      * @return Список последних транзакций.
      */
-    public List<TradeInfo> getTrades(Pair pair) throws BtceException {
+    public List<TradeInfo> getTrades(Pair pair) {
         JsonNode response = queryResultRoot(pair, "trades");
 
         List<TradeInfo> infos = new ArrayList<TradeInfo>();
@@ -81,11 +81,11 @@ public class GeneralBtce {
         return infos;
     }
 
-    public double getFee(Pair pair) throws BtceException {
+    public double getFee(Pair pair) {
         throw new RuntimeException();
     }
 
-    private JsonNode queryResultRoot(Pair pair, String methodName) throws BtceException {
+    private JsonNode queryResultRoot(Pair pair, String methodName) {
         try {
             String respone = responseFetcher.fetchResponse(pair, methodName);
             return mapper.readTree(respone);

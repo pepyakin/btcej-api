@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * Класс представляет возможность узнать какие операции доступны данному {@link BtceAuth аккаунту}.
+ *
  * @author pepyakin
  */
 public class Rights {
@@ -32,6 +34,13 @@ public class Rights {
      */
     public boolean isTradeAvailable() {
         return trade;
+    }
+
+    /**
+     * @return Разрешается ли проводить вывод на данном аккаунте.
+     */
+    public boolean isWithdrawAvailable() {
+        return withdraw;
     }
 
     @Override

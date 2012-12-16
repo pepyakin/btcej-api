@@ -18,11 +18,20 @@ import java.util.*;
  */
 public class Btce {
 
+    /**
+     * Этот класс:
+     * -- хранит nonce
+     * -- подписывает сообщение.
+     * -- формирует POST параметры.
+     * -- делает HTTP запрос
+     * -- считывает и обворачивает ответ.
+     */
+
 	private long nonce;
 	private BtceAuth auth;
 
 
-    public static Btce getBtce(String key, String secret) throws BtceException {
+    public static Btce getBtce(String key, String secret) {
         BtceAuth auth = new BtceAuth(key, secret);
         return new Btce(auth);
     }
@@ -109,7 +118,7 @@ public class Btce {
         return responseContent.toString();
     }
 	
-	public UserInfo getUserInfo() throws BtceException {
+	public UserInfo getUserInfo() {
 
 
         Map<String, String> args = new TreeMap<String, String>();
