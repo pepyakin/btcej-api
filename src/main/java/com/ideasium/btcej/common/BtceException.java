@@ -15,7 +15,6 @@ public class BtceException extends RuntimeException {
 	private static final long serialVersionUID = 7930546232987642967L;
 
 	public BtceException() {
-		super();
 	}
 
 	public BtceException(String message, Throwable throwable) {

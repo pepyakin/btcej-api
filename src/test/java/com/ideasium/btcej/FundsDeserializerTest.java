@@ -1,9 +1,7 @@
 package com.ideasium.btcej;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ideasium.btcej.common.Currency;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -36,6 +36,7 @@ public class Funds {
 
         private final TIntDoubleHashMap funds = new TIntDoubleHashMap();
 
+        @SuppressWarnings("UnusedReturnValue")
         public Builder setFunds(Currency currency, double amount) {
             funds.put(currency.ordinal(), amount);
 
