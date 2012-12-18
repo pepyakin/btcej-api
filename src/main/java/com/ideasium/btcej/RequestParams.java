@@ -47,7 +47,7 @@ class RequestParams {
         }
     }
 
-    public String buildPostData() {
+    public String buildQuery() {
         StringBuilder sb = new StringBuilder();
 
         boolean firstIteration = true;

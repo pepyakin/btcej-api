@@ -3,9 +3,6 @@ package com.ideasium.btcej;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import static junit.framework.Assert.*;
 
 /**
@@ -25,7 +22,7 @@ public class RequestParamsTest {
     public void testSetMethod() throws Exception {
         params.setMethod("someMethod");
 
-        String queryString = params.buildPostData();
+        String queryString = params.buildQuery();
 
         assertEquals("method=someMethod", queryString);
     }
@@ -34,7 +31,7 @@ public class RequestParamsTest {
     public void testSetNonce() throws Exception {
         params.setNonce(42);
 
-        String queryString = params.buildPostData();
+        String queryString = params.buildQuery();
 
         assertEquals("nonce=42", queryString);
     }
@@ -43,7 +40,7 @@ public class RequestParamsTest {
     public void testSetParam() throws Exception {
         params.setParam("foo", "true");
 
-        String queryString = params.buildPostData();
+        String queryString = params.buildQuery();
 
         assertEquals("foo=true", queryString);
     }
@@ -53,7 +50,7 @@ public class RequestParamsTest {
         params.setParam("foo", "true");
         params.setParam("bar", "42");
 
-        String queryString = params.buildPostData();
+        String queryString = params.buildQuery();
 
         assertParams(queryString, "foo=true", "bar=42");
     }
@@ -64,7 +61,7 @@ public class RequestParamsTest {
         params.setNonce(42);
         params.setParam("foo", "true");
 
-        String queryString = params.buildPostData();
+        String queryString = params.buildQuery();
 
         assertParams(queryString, "method=baz", "nonce=42", "foo=true");
     }

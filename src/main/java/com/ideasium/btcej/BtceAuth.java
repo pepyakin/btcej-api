@@ -24,6 +24,7 @@ public class BtceAuth {
 
 	private String key;
 	private Mac hmacSha512;
+    private HexStringMaker hexMaker = new HexStringMaker();
 
 	public BtceAuth(String key, String secretKey) {
 		if (key == null) {
@@ -56,4 +57,9 @@ public class BtceAuth {
 	public Mac getHmacSha512() {
 		return hmacSha512;
 	}
+
+    public String signMessage(String message) {
+        byte[] d = hmacSha512.doFinal(message.getBytes());
+        return hexMaker.getHexString(d);
+    }
 }
