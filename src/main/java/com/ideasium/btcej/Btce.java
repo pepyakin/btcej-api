@@ -44,4 +44,9 @@ public class Btce {
             throw new BtceException(e);
         }
     }
+
+    public TransactionHistoryRequestBuilder getTransactionHistory() {
+        RequestTemplate template = new RequestTemplate(connectionFactory);
+        return new TransactionHistoryRequestBuilder(template);
+    }
 }
