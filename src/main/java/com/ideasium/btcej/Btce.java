@@ -33,6 +33,12 @@ public class Btce {
 		}
 		
 		this.auth = auth;
+
+        connectionFactory = new ConnectionFactory(
+                "https://btc-e.com/tapi",
+                new NonceHelper(),
+                auth
+        );
 	}
 	
 	public UserInfo getUserInfo() {

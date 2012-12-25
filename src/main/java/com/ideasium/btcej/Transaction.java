@@ -8,6 +8,7 @@
 
 package com.ideasium.btcej;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ideasium.btcej.common.Currency;
 
@@ -33,6 +34,13 @@ public class Transaction {
 
     @JsonProperty("timestamp")
     private long timestamp;
+
+    @JsonIgnore
+    private long id;
+
+    public long getId() {
+        return id;
+    }
 
     public int getType() {
         return type;
