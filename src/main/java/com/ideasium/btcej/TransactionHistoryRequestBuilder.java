@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author Sergey
  */
-public class TransactionHistoryRequestBuilder extends RequestBuilder {
+public class TransactionHistoryRequestBuilder extends RequestBuilder<TransactionHistory> {
 
     public TransactionHistoryRequestBuilder(@NotNull RequestTemplate params) {
         super(params, "TransHistory", TransactionHistory.class);

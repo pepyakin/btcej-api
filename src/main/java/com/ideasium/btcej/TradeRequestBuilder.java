@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author pepyakin
  */
-public class TradeRequestBuilder extends RequestBuilder {
+public class TradeRequestBuilder extends RequestBuilder<TradeAnswer> {
 
     private boolean tradeTypeSet;
     private boolean pairSet;
@@ -36,7 +36,7 @@ public class TradeRequestBuilder extends RequestBuilder {
     private boolean rateSet;
 
     public TradeRequestBuilder(@NotNull RequestTemplate params) {
-        super(params, "TradeHistory", TradeAnswer.class);
+        super(params, "Trade", TradeAnswer.class);
     }
 
     /**
