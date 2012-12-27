@@ -54,10 +54,7 @@ class FundsDeserializer extends JsonDeserializer<Funds> {
     }
 
     private void parseStartObject() throws JsonMappingException {
-        JsonToken token;
-        token = jsonParser.getCurrentToken();
-
-        if (token != JsonToken.START_OBJECT) {
+        if (jsonParser.getCurrentToken() != JsonToken.START_OBJECT) {
             throw context.wrongTokenException(jsonParser, JsonToken.START_OBJECT, null);
         }
     }

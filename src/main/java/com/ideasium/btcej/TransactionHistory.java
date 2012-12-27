@@ -8,6 +8,7 @@
 
 package com.ideasium.btcej;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.ideasium.btcej.util.TroveIteratorWrapper;
 import gnu.trove.iterator.TLongObjectIterator;
 import gnu.trove.map.TLongObjectMap;
@@ -17,6 +18,8 @@ import java.util.Iterator;
 /**
  * @author pepyakin
  */
+
+@JsonDeserialize(using = TransactionHistoryDeserializer.class)
 public class TransactionHistory implements Iterable<Transaction> {
 
     private final TLongObjectMap<Transaction> transactions;

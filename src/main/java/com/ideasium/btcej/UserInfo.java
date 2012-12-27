@@ -52,7 +52,7 @@ public class UserInfo {
     }
 
     /**
-     * @return
+     * @return Время сервера в формате UNIX-time.
      */
     public long getServerTime() {
         return serverTime;
