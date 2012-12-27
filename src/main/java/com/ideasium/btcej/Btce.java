@@ -71,6 +71,10 @@ public class Btce {
         return new TransactionHistoryRequestBuilder(template);
     }
 
+    public OrderHistoryRequestBuilder orderHistory() {
+        RequestTemplate template = getRequestTemplate();
+        return new OrderHistoryRequestBuilder(template);
+    }
 
     public TradeRequestBuilder trade() {
         RequestTemplate template = getRequestTemplate();

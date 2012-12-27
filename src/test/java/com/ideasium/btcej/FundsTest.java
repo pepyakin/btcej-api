@@ -34,7 +34,7 @@ import static junit.framework.Assert.*;
 /**
  * @author pepyakin
  */
-public class FundsDeserializerTest {
+public class FundsTest {
 
     private static final double ACCEPTED_DELTA = 0.00001;
 

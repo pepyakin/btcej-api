@@ -22,6 +22,8 @@
 
 package com.ideasium.btcej.common;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import static com.ideasium.btcej.common.Currency.*;
 
 /**
@@ -64,6 +66,7 @@ public enum Pair {
     /**
      * @return Идентификатор пригодный для использования в запросах.
      */
+    @JsonValue
     public String getName() {
         StringBuilder sb = new StringBuilder();
 

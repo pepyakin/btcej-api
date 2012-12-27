@@ -33,9 +33,8 @@ import static org.junit.Assert.*;
 /**
  * @author pepyakin
  */
-public class TransactionHistoryDeserializerTest {
+public class TransactionHistoryTest {
 
-    private TransactionHistoryDeserializer deserializer;
     private ObjectMapper mapper;
 
 
@@ -43,9 +42,7 @@ public class TransactionHistoryDeserializerTest {
 
     @Before
     public void setUp() throws Exception {
-        deserializer = new TransactionHistoryDeserializer();
         mapper = new ObjectMapper();
-
         jsonFixture = IOUtils.toString(getClass().getResourceAsStream("/fixtures/transaction_history"));
     }
 
