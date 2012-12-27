@@ -57,7 +57,7 @@ public class Btce {
     }
 
     public UserInfo getUserInfo() {
-        RequestTemplate template = new RequestTemplate(connectionFactory);
+        RequestTemplate template = getRequestTemplate();
 
         try {
             return template.makeRequest("getInfo", UserInfo.class);
@@ -67,7 +67,28 @@ public class Btce {
     }
 
     public TransactionHistoryRequestBuilder getTransactionHistory() {
-        RequestTemplate template = new RequestTemplate(connectionFactory);
+        RequestTemplate template = getRequestTemplate();
         return new TransactionHistoryRequestBuilder(template);
+    }
+
+
+    public TradeRequestBuilder trade() {
+        RequestTemplate template = getRequestTemplate();
+        return new TradeRequestBuilder(template);
+    }
+
+    public CancelOrderAnswer cancelOrder(long orderId) {
+        RequestTemplate template = getRequestTemplate();
+        template.setParam("order_id", Long.toString(orderId));
+
+        try {
+            return template.makeRequest("CancelOrder", CancelOrderAnswer.class);
+        } catch (IOException e) {
+            throw new BtceException(e);
+        }
+    }
+
+    private RequestTemplate getRequestTemplate() {
+        return new RequestTemplate(connectionFactory);
     }
 }

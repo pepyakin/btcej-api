@@ -33,34 +33,36 @@ import static org.junit.Assert.*;
 /**
  * @author pepyakin
  */
-public class TransactionHistoryDeserializerTest {
+public class TradeAnswerTest {
 
-    private TransactionHistoryDeserializer deserializer;
-    private ObjectMapper mapper;
+    public static final double APPLICABLE_DELTA = 0.000001;
 
-
-    private String jsonFixture;
+    ObjectMapper mapper;
+    String jsonFixture;
 
     @Before
     public void setUp() throws Exception {
-        deserializer = new TransactionHistoryDeserializer();
         mapper = new ObjectMapper();
 
-        jsonFixture = IOUtils.toString(getClass().getResourceAsStream("/fixtures/transaction_history"));
+        jsonFixture = IOUtils.toString(
+                getClass().getResourceAsStream("/fixtures/tradeanswer")
+        );
     }
 
     @Test
-    public void testDeserialize() throws Exception {
-        TransactionHistory history = mapper.readValue(jsonFixture, TransactionHistory.class);
+    public void testDeserialze() throws Exception {
+        TradeAnswer tradeAnswer = mapper.readValue(jsonFixture, TradeAnswer.class);
 
-        Transaction transaction = history.getTransactionById(1081672);
-        assertNotNull(transaction);
+        assertEquals(0.1, tradeAnswer.getReceived(), APPLICABLE_DELTA);
+        assertEquals(0, tradeAnswer.getRemains(), APPLICABLE_DELTA);
+        assertEquals(22842, tradeAnswer.getOrderId());
+    }
 
-        assertEquals(1, transaction.getType());
-        assertEquals(1.0, transaction.getAmount(), 0.000001);
-        assertEquals(Currency.BTC, transaction.getCurrency());
-        assertEquals("BTC Payment", transaction.getDescription());
-        assertEquals(2, transaction.getStatus());
-        assertEquals(1342448420, transaction.getTimestamp());
+    @Test
+    public void testDeserializeFunds() throws Exception {
+        TradeAnswer tradeAnswer = mapper.readValue(jsonFixture, TradeAnswer.class);
+
+        Funds funds = tradeAnswer.getFunds();
+        assertNotNull(funds);
     }
 }
